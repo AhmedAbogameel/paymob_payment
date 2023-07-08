@@ -48,7 +48,7 @@ final PaymobResponse? response = await PaymobPayment.instance.pay(
 )
 ```
 
-## :incoming_envelope: PaymobResponse Explaining
+## :incoming_envelope: PaymobResponse
 
 | Variable      | Type    | Description          |
 | ------------- |---------| -------------------- |
