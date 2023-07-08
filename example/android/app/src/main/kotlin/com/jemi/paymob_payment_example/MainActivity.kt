@@ -1,0 +1,6 @@
+package com.jemi.paymob_payment_example
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
