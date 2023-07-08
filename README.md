@@ -26,7 +26,7 @@ PaymobPayment.instance.initialize(
 >
 > You can use this singleton (instance) 
 > or 
-> Use create your own one 
+> Create your own  
 > if you want to create different iFrames or integrations
 ```dart
 final PaymobPayment paymobPayment = PaymobPayment();
