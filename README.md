@@ -7,7 +7,7 @@ Easily accept payments through Online Cards in your Flutter app with Paymob.
 Add this to `dependencies` in your app's `pubspec.yaml`
 
 ```yaml
-moyasar_payment : latest_version
+paymob_payment : latest_version
 ```
 
 ## :hammer: Initialization
