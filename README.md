@@ -75,4 +75,4 @@ Change cvv to 111 or expiry year to 20
 
 > :pushpin: Note :
 > 
-> May be you have to call paymob support to activate your test card 
+> May be you have to contact paymob support to activate your test card 
