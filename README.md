@@ -56,5 +56,5 @@ final PaymobResponse? response = await PaymobPayment.instance.pay(
 
 Change cvv to 111 or expiry year to 20
 
-> :pushpin: Note
+> :pushpin: Note :
 > May be you have to call paymob support to activate your test card 
