@@ -2,7 +2,7 @@
 
 Easily accept payments through Online Cards in your Flutter app with Paymob.
 
-![Example](https://github.com/AhmedAbogameel/paymob_payment/example.gif)
+![Example](https://github.com/AhmedAbogameel/paymob_payment/blob/master/example.gif)
 
 ## :rocket: Installation
 
