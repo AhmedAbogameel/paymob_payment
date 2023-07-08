@@ -1,3 +1,5 @@
-## 0.0.1
+## 0.0.1+1
+- Add PaymobBillingData Constructor
 
-* Implement Online cards payment. 
+## 0.0.1
+- Implement Online cards payment. 
