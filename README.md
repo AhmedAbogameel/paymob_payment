@@ -20,6 +20,21 @@ PaymobPayment.instance.initialize(
 );
 ```
 
+> :pushpin: Note :
+>
+> You can use this singleton (instance) 
+> or 
+> Use create your own one 
+> if you want to create different iFrames or integrations
+```dart
+final PaymobPayment paymobPayment = PaymobPayment();
+  paymobPayment.initialize(
+  apiKey: "", 
+  integrationID: 123456, 
+  iFrameID: 123456, 
+);
+```
+
 ## :bookmark: Usage
 
 ```dart
