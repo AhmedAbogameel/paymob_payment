@@ -60,6 +60,7 @@ class PaymobPayment {
     required String authToken,
     required String currency,
     required String amount,
+    required List items,
   }) async {
     try {
       final response = await _dio.post(
@@ -69,7 +70,7 @@ class PaymobPayment {
           "delivery_needed": "false",
           "amount_cents": amount,
           "currency": currency,
-          "items": [],
+          "items": items,
         },
       );
       return response.data['id'];
@@ -84,6 +85,7 @@ class PaymobPayment {
     required String currency,
     required int orderID,
     required String amount,
+    required PaymobBillingData billingData,
   }) async {
     final response = await _dio.post(
       'acceptance/payment_keys',
@@ -92,21 +94,7 @@ class PaymobPayment {
         "amount_cents": amount,
         "expiration": _userTokenExpiration,
         "order_id": orderID,
-        "billing_data": {
-          "apartment": "00000",
-          "email": "example@mail.com",
-          "floor": "000",
-          "first_name": "Unknown",
-          "street": "Unknown",
-          "building": "00000",
-          "phone_number": "+9612341234",
-          "shipping_method": "Unknown",
-          "postal_code": "00000",
-          "city": "NA",
-          "country": "NA",
-          "last_name": "NA",
-          "state": "NA"
-        },
+        "billing_data": billingData,
         "currency": currency,
         "integration_id": _integrationID,
         "lock_order_when_paid": "false"
@@ -130,6 +118,10 @@ class PaymobPayment {
     required String amountInCents,
     /// Optional Callback if you can use return result of pay function or use this callback
     void Function(PaymobResponse response)? onPayment,
+    /// list of json objects contains the contents of the purchase.
+    List? items,
+    /// The billing data related to the customer related to this payment.
+    PaymobBillingData? billingData
   }) async {
     if (!_isInitialized) {
       throw Exception('PaymobPayment is not initialized call:`PaymobPayment.instance.initialize`');
@@ -139,12 +131,14 @@ class PaymobPayment {
       authToken: authToken,
       currency: currency,
       amount: amountInCents,
+      items: items ?? [],
     );
     final purchaseToken = await _getPurchaseToken(
       authToken: authToken,
       currency: currency,
       orderID: orderID,
       amount: amountInCents,
+      billingData: billingData ?? PaymobBillingData(),
     );
     if (context.mounted) {
       final response = await PaymobIFrame.show(
