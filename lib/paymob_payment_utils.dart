@@ -13,10 +13,17 @@ class PaymobPayment {
   late String _iFrameURL;
   late int _userTokenExpiration;
 
+
+  /// Initializing PaymobPayment instance.
   Future<bool> initialize({
+    /// It is a unique identifier for the merchant which used to authenticate your requests calling any of Accept's API.
+    /// from dashboard Select Settings -> Account Info -> API Key
     required String apiKey,
+    /// from dashboard Select Developers -> Payment Integrations -> Online Card ID
     required  int integrationID,
+    /// from paymob Select Developers -> iframes
     required  int iFrameID,
+    /// The expiration time of this payment token in seconds. (The maximum is 3600 seconds which is an hour)
     int userTokenExpiration = 3600,
 }) async {
     if (_isInitialized) {
@@ -33,6 +40,7 @@ class PaymobPayment {
     return _isInitialized;
   }
 
+  /// Get authentication token, which is valid for one hour from the creation time.
   Future<String> _getAuthToken() async {
     try {
       final response = await _dio.post(
@@ -47,6 +55,7 @@ class PaymobPayment {
     }
   }
 
+  /// At this step, you will register an order to Accept's database, so that you can pay for it later using a transaction
   Future<int> _addOrder({
     required String authToken,
     required String currency,
@@ -69,6 +78,7 @@ class PaymobPayment {
     }
   }
 
+  /// At this step, you will obtain a payment_key token. This key will be used to authenticate your payment request. It will be also used for verifying your transaction request metadata.
   Future<String> _getPurchaseToken({
     required String authToken,
     required String currency,
@@ -109,10 +119,16 @@ class PaymobPayment {
     return response.data['token'];
   }
 
+  /// Proceed to pay with only calling this function.
+  /// Opens a WebView at Paymob redirectedURL to accept user payment info.
   Future<PaymobResponse?> pay({
+    /// BuildContext for navigation to WebView
     required BuildContext context,
+    /// Which Currency you would pay in.
     required String currency,
+    /// Payment amount in cents EX: 20000 is an 200 EGP
     required String amountInCents,
+    /// Optional Callback if you can use return result of pay function or use this callback
     void Function(PaymobResponse response)? onPayment,
   }) async {
     if (!_isInitialized) {
