@@ -15,6 +15,22 @@ class PaymobBillingData {
   String? country;
   String? shippingMethod;
 
+  PaymobBillingData({
+    this.email,
+    this.firstName,
+    this.lastName,
+    this.phoneNumber,
+    this.apartment,
+    this.floor,
+    this.street,
+    this.building,
+    this.postalCode,
+    this.city,
+    this.state,
+    this.country,
+    this.shippingMethod,
+  });
+
   Map<String, dynamic> toJson() {
     return {
       "email": email ?? "Unknown",
